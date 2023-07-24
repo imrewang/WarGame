@@ -19,15 +19,15 @@ Qt战棋游戏
 
 ### （三）部署截图
 
-![部署截图](https://github.com/imrewang/WarGame/blob/main/screenshot/%E9%83%A8%E7%BD%B2%E6%88%AA%E5%9B%BE.png?raw=true)
+![部署截图](/PhotoInReadme/部署截图.png)
 
 ## 三、运行截图
 
-![开始页面](https://github.com/imrewang/WarGame/blob/main/screenshot/%E5%BC%80%E5%A7%8B%E7%95%8C%E9%9D%A2.png?raw=true)
+![开始页面](/PhotoInReadme/开始页面.png)
 
-![新手教程](https://github.com/imrewang/WarGame/blob/main/screenshot/%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B.png?raw=true)
+![新手教程](/PhotoInReadme/新手教程.png)
 
-![游戏页面](https://github.com/imrewang/WarGame/blob/main/screenshot/%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2.png?raw=true)
+![游戏页面](/PhotoInReadme/游戏界面.png)
 
 ## 四、总结
 

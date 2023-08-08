@@ -1,18 +1,9 @@
 ﻿#include "gamescene.h"
-#include "characterrole.h"
-#include "gamelabel.h"
-#include "algorithm.h"
-#include <QApplication>
-#include <QPixmap>
-#include <QScreen>
+
 
 /*  GameScene是关于游戏页面的类，包含游戏运行的所有内容，可以视为游戏的运行引擎 */
 
-
-
-GameScene::GameScene(const int gameMode, QWidget* parent)
-	: QDialog(parent), m_map(GameMap())
-{
+void GameScene::InterfaceInit() {
 	// 设置屏幕格式
 	setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	setMouseTracking(true);
@@ -21,7 +12,7 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 	setAttribute(Qt::WA_DeleteOnClose);
 
 	m_mouseCellx = 0; m_mouseCelly = 0;
-	m_gameState = BEGIN;
+	m_gameState = GameScene::BEGIN;
 	m_game_number = 1;
 	m_characterNum = 10;
 
@@ -35,13 +26,19 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 	m_attrackSound = new QSound(ATTRACK_MUSIC_PATH, this);
 	m_clickSound = new QSound(CLICK_MUSIC_PATH, this);
 
-	// 设置右下角四个按钮
+	// 设置左上角四个按钮
 	setButton();
 
 	// 设置消息提示框
 	m_hint = new HintLabel(this);
 	m_hint->hide();
+}
 
+GameScene::GameScene(const int gameMode, QWidget* parent)
+	: QDialog(parent), m_map(GameMap())
+{
+
+	InterfaceInit();
 
 
 	// 角色创建相关内容
@@ -148,10 +145,13 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 	redrawBase();
 
 }
+
 GameScene::~GameScene()
 {
 	qDebug() << "~GameScene()析构函数" << endl;
 }
+
+
 // 创建人物函数
 void GameScene::createCharacter()
 {

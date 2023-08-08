@@ -21,6 +21,18 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Header Files\mainline">
+      <UniqueIdentifier>{b37f6ca6-a9e9-4b8a-a584-74772fb9d209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mainline">
+      <UniqueIdentifier>{9ac359c4-fd8d-44f3-8e83-24440b43f636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\label">
+      <UniqueIdentifier>{6653461b-495b-4801-ab8f-31b321c2524b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\label">
+      <UniqueIdentifier>{be2ef80e-ffad-456f-9e9d-242c3c16f55f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="mainscene.qrc">
@@ -61,13 +73,7 @@
     <ClCompile Include="characterrole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gamelabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gamemap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gamescene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="guidescene.cpp">
@@ -75,6 +81,15 @@
     </ClCompile>
     <ClCompile Include="playingmenu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gamescene.cpp">
+      <Filter>Source Files\mainline</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickLabel.cpp">
+      <Filter>Source Files\label</Filter>
+    </ClCompile>
+    <ClCompile Include="HintLabel.cpp">
+      <Filter>Source Files\label</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,18 +108,18 @@
     <ClInclude Include="mainscene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ClickLabel.h">
+      <Filter>Header Files\label</Filter>
+    </ClInclude>
+    <ClInclude Include="HintLabel.h">
+      <Filter>Header Files\label</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="playingmenu.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="guidescene.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="gamescene.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="gamelabel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="characterlabel.h">
@@ -124,6 +139,9 @@
     </QtMoc>
     <QtMoc Include="ai.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="gamescene.h">
+      <Filter>Header Files\mainline</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

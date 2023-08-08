@@ -1,18 +1,25 @@
 ﻿#pragma once
 
 #include "gamemap.h"
-#include "character.h"
+#include "characterrole.h"
 #include "config.h"
 #include "algorithm.h"
-#include "gamelabel.h"
+#include "ClickLabel.h"
 #include "aicontroller.h"
 #include "animation.h"
 #include "playingmenu.h"
 #include "base.h"
+#include <QApplication>
+#include <QPixmap>
+#include <QScreen>
 
 class GameScene : public QDialog
 {
     Q_OBJECT
+
+private:
+    void InterfaceInit();
+
 public:
     enum GAMESTATE { BEGIN, FINDPATH, FINDATTRACK, AI, END };
     explicit GameScene(const int gameMode = ONEPLAYER, QWidget* parent = nullptr);
@@ -29,7 +36,7 @@ protected:
 
     void setScreenMoveTimer();  // 设置屏幕移动判断的QTimer
 
-    void setButton(); // 设置屏幕右下角四个按钮
+    void setButton(); // 设置屏幕左上角四个按钮
 
     void createCharacter(); // 初始创建人物
     void createBase();  //创建双方基地

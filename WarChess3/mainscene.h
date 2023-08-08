@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "gamescene.h"
-#include "gamelabel.h"
 
 #include "guidescene.h"
 #include <QWidget>

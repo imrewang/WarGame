@@ -1,10 +1,10 @@
 ﻿#pragma once
 
+#include "ClickLabel.h"
 #include "gamemap.h"
 #include "characterrole.h"
 #include "config.h"
 #include "algorithm.h"
-#include "ClickLabel.h"
 #include "aicontroller.h"
 #include "animation.h"
 #include "playingmenu.h"

@@ -89,10 +89,10 @@
     <ClCompile Include="playingmenu.cpp" />
     <QtRcc Include="mainscene.qrc" />
     <QtUic Include="mainscene.ui" />
-    <ClInclude Include="ClickLabel.h" />
-    <ClInclude Include="HintLabel.h" />
+    <QtMoc Include="ClickLabel.h" />
+    <QtMoc Include="HintLabel.h" />
     <ClInclude Include="mainscene.h" />
-    <ClCompile Include="ai.cpp" />
+    <ClCompile Include="GameAI.cpp" />
     <ClCompile Include="aicontroller.cpp" />
     <ClCompile Include="algorithm.cpp" />
     <ClCompile Include="animation.cpp" />
@@ -101,13 +101,13 @@
     <ClCompile Include="characterlabel.cpp" />
     <ClCompile Include="characterrole.cpp" />
     <ClCompile Include="gamemap.cpp" />
-    <ClCompile Include="gamescene.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="guidescene.cpp" />
     <ClCompile Include="mainscene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ai.h" />
+    <QtMoc Include="GameAI.h" />
     <QtMoc Include="aicontroller.h" />
     <ClInclude Include="algorithm.h" />
     <QtMoc Include="animation.h" />
@@ -117,7 +117,7 @@
     <ClInclude Include="characterrole.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="gamemap.h" />
-    <QtMoc Include="gamescene.h" />
+    <QtMoc Include="GameScene.h" />
     <QtMoc Include="guidescene.h" />
     <QtMoc Include="playingmenu.h" />
   </ItemGroup>

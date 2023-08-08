@@ -3,7 +3,7 @@
 #include <QObject>
 #include "config.h"
 #include "character.h"
-#include "ai.h"
+#include "GameAI.h"
 
 
 // 此类控制AI方的所有角色

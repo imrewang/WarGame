@@ -1,3 +1,8 @@
 .vs/
 Debug/
+WarChess3/Debug/
+WarChess3/Release/
+WarChess3/WarChess3.vcxproj
+WarChess3/WarChess3.vcxproj.filters
+WarChess3/WarChess3.vcxproj.user
 WarChess3.sln

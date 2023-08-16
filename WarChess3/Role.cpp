@@ -108,7 +108,7 @@ void Role::movePos(const int steps, const std::vector<int>& path)
 {
 	selection->hide();
 	curMove -= steps;
-	qDebug() << name << endl;
+	qDebug() << name<<"movePos" << endl;
 	moveAnimation->moveAlongPath(this, path);
 	infoChangedSignal();
 }

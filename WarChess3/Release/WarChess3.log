@@ -1,4 +1,0 @@
-﻿  gamescene.cpp
-D:\exercise_w\WarChess3\WarChess3\gamescene.cpp(407,27): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
-D:\exercise_w\WarChess3\WarChess3\gamescene.cpp(421,35): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
-  WarChess3.vcxproj -> D:\exercise_w\WarChess3\Release\WarChess3.exe

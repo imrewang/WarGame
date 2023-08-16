@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-#include "gamelabel.h"
 #include "config.h"
+#include "HintLabel.h"
+#include "ClickLabel.h"
 #include <QWidget>
 #include <QPushButton>
 

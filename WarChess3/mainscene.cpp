@@ -47,7 +47,7 @@ MainScene::MainScene(QWidget* parent) :
 
 	m_guideScene = new GuideScene(this);
 
-	connect(m_button[0], &ClickLabel::clicked, this, [=]() {
+	connect(m_button[0], &ClickLabel::clickedSignal, this, [=]() {
 
 		zoom(m_button[0]);
 
@@ -67,14 +67,14 @@ MainScene::MainScene(QWidget* parent) :
 		});
 
 	// 按键2：人机模式
-	connect(m_button[1], &ClickLabel::clicked, this, [=]() {
+	connect(m_button[1], &ClickLabel::clickedSignal, this, [=]() {
 		zoom(m_button[1]);
 		m_bgm->stop();
 
 		QTimer::singleShot(ZOOM_DURATION * 1.5, this, [=]() {
 			
-			m_lastGameMode = ONEPLAYER;
-			createGameScene(ONEPLAYER);
+			m_lastGameMode = SINGLE_PLAYER;
+			createGameScene(SINGLE_PLAYER);
 
 			QTime dieTime = QTime::currentTime().addMSecs(300);//延时300毫秒
 			while (QTime::currentTime() < dieTime) {
@@ -87,14 +87,14 @@ MainScene::MainScene(QWidget* parent) :
 		});
 
 	// 按键3：双人模式
-	connect(m_button[2], &ClickLabel::clicked, this, [=]() {
+	connect(m_button[2], &ClickLabel::clickedSignal, this, [=]() {
 		zoom(m_button[2]);
 		m_bgm->stop();
 
 		QTimer::singleShot(ZOOM_DURATION * 1.5, this, [=]() {
 			
-			m_lastGameMode = TWOPLAYERS;
-			createGameScene(TWOPLAYERS);
+			m_lastGameMode = TWO_PLAYER;
+			createGameScene(TWO_PLAYER);
 
 			QTime dieTime = QTime::currentTime().addMSecs(300);//延时300毫秒
 			while (QTime::currentTime() < dieTime) {
@@ -116,8 +116,8 @@ void MainScene::createGameScene(const int gameMode)
 	//qDebug() << "mainscene.cpp MainScene::createGameScene 111" << endl;
 
 	// 处理游戏界面的退出信号
-	connect(m_gameScene, &GameScene::exit, this, [=]() {
-		//qDebug() << "mainscene.cpp MainScene::createGameScene exit" << endl;
+	connect(m_gameScene, &GameScene::exitSignal, this, [=]() {
+		//qDebug() << "mainscene.cpp MainScene::createGameScene exitSignal" << endl;
 		m_gameScene->close();
 		
 		//delete gameScene;
@@ -129,8 +129,8 @@ void MainScene::createGameScene(const int gameMode)
 		});
 
 	// 处理游戏界面的重新开始游戏界面
-	connect(m_gameScene, &GameScene::restart, this, [&]() {
-		//qDebug() << "mainscene.cpp MainScene::createGameScene restart" << endl;
+	connect(m_gameScene, &GameScene::restartSignal, this, [&]() {
+		//qDebug() << "mainscene.cpp MainScene::createGameScene restartSignal" << endl;
 		m_gameScene->close();
 		//delete gameScene;
 		//delete m_gameScene;//设置了setAttribute(Qt::WA_DeleteOnClose);所以不用了吧

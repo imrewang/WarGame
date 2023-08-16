@@ -30,8 +30,8 @@
 #define WINDOW_HEIGHT 960
 #define WINDOW_BOUNDARY 64
 #define CELL_SIZE 64
-#define MAP_HEIGHT m_map.m_height
-#define MAP_WIDTH m_map.m_width
+#define MAP_HEIGHT gameMap.m_height
+#define MAP_WIDTH gameMap.m_width
 
 // QTimer参数
 #define MOUSE_MOVE_TIMER_INTERVAL 150
@@ -131,4 +131,4 @@ inline int ManhattanDist(int x1, int y1, int x2, int y2)
 // 一些枚举变量
 enum BELONGING { RED, BLUE };
 enum DERECTION { UP, DOWN, LEFT, RIGHT };
-enum GAMEMODE { ONEPLAYER = 1, TWOPLAYERS = 0 };
+enum GAMEMODE { SINGLE_PLAYER = 1, TWO_PLAYER = 0 };

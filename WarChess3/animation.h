@@ -2,7 +2,6 @@
 
 #include "config.h"
 #include <QObject>
-#include "gamelabel.h"
 #include <QWidget>
 
 

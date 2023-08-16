@@ -21,6 +21,36 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Header Files\mainline">
+      <UniqueIdentifier>{b37f6ca6-a9e9-4b8a-a584-74772fb9d209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mainline">
+      <UniqueIdentifier>{9ac359c4-fd8d-44f3-8e83-24440b43f636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\label">
+      <UniqueIdentifier>{6653461b-495b-4801-ab8f-31b321c2524b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\label">
+      <UniqueIdentifier>{be2ef80e-ffad-456f-9e9d-242c3c16f55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ai">
+      <UniqueIdentifier>{c943a5f4-d55e-4cdb-8d79-e36a89459e1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ai">
+      <UniqueIdentifier>{e5a13a26-2701-4e58-91a9-ef9af5c42e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\piece">
+      <UniqueIdentifier>{bb0d6272-4770-46cc-9765-380e081a99b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\piece">
+      <UniqueIdentifier>{9ac570ad-be94-463e-b1ef-b9816a421edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\property">
+      <UniqueIdentifier>{4d25b7c7-c67e-4498-95fe-1c1e14c30173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\property">
+      <UniqueIdentifier>{1c8edfc9-1dc9-4dc3-8bea-231e0a0fd123}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="mainscene.qrc">
@@ -37,37 +67,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aicontroller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="algorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="characterlabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="characterrole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gamelabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gamemap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gamescene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="guidescene.cpp">
@@ -76,12 +82,51 @@
     <ClCompile Include="playingmenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\mainline</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickLabel.cpp">
+      <Filter>Source Files\label</Filter>
+    </ClCompile>
+    <ClCompile Include="HintLabel.cpp">
+      <Filter>Source Files\label</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAI.cpp">
+      <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="AIController.cpp">
+      <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="Role.cpp">
+      <Filter>Source Files\piece</Filter>
+    </ClCompile>
+    <ClCompile Include="VariousRoles.cpp">
+      <Filter>Source Files\piece</Filter>
+    </ClCompile>
+    <ClCompile Include="Piece.cpp">
+      <Filter>Source Files\piece</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyTag.cpp">
+      <Filter>Source Files\property</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files\piece</Filter>
+    </ClCompile>
+    <ClCompile Include="RoleProperty.cpp">
+      <Filter>Source Files\property</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseProperty.cpp">
+      <Filter>Source Files\property</Filter>
+    </ClCompile>
+    <ClCompile Include="RoleSelection.cpp">
+      <Filter>Source Files\label</Filter>
+    </ClCompile>
+    <ClCompile Include="HPLabel.cpp">
+      <Filter>Source Files\label</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="characterrole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
@@ -93,6 +138,15 @@
     <ClInclude Include="mainscene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VariousRoles.h">
+      <Filter>Header Files\piece</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseProperty.h">
+      <Filter>Header Files\property</Filter>
+    </ClInclude>
+    <ClInclude Include="RoleProperty.h">
+      <Filter>Header Files\property</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="playingmenu.h">
@@ -101,29 +155,41 @@
     <QtMoc Include="guidescene.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="gamescene.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="gamelabel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="characterlabel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="character.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="base.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="animation.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="aicontroller.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="GameScene.h">
+      <Filter>Header Files\mainline</Filter>
     </QtMoc>
-    <QtMoc Include="ai.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="HintLabel.h">
+      <Filter>Header Files\label</Filter>
+    </QtMoc>
+    <QtMoc Include="ClickLabel.h">
+      <Filter>Header Files\label</Filter>
+    </QtMoc>
+    <QtMoc Include="GameAI.h">
+      <Filter>Header Files\ai</Filter>
+    </QtMoc>
+    <QtMoc Include="AIController.h">
+      <Filter>Header Files\ai</Filter>
+    </QtMoc>
+    <QtMoc Include="Role.h">
+      <Filter>Header Files\piece</Filter>
+    </QtMoc>
+    <QtMoc Include="PropertyTag.h">
+      <Filter>Header Files\property</Filter>
+    </QtMoc>
+    <QtMoc Include="RoleSelection.h">
+      <Filter>Header Files\label</Filter>
+    </QtMoc>
+    <QtMoc Include="HPLabel.h">
+      <Filter>Header Files\label</Filter>
+    </QtMoc>
+    <QtMoc Include="Piece.h">
+      <Filter>Header Files\piece</Filter>
+    </QtMoc>
+    <QtMoc Include="Base.h">
+      <Filter>Header Files\piece</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

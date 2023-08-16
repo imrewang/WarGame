@@ -29,12 +29,15 @@ void MoveAnimation::moveOneCell(QWidget* object, const int direction, const int 
     case DOWN: endy += CELL_SIZE; emit widgetDown(); break;
     }
 
+
     // 制作动画
+    
     QPropertyAnimation* animation = new QPropertyAnimation(object, "geometry");
     animation->setStartValue(QRect(beginx, beginy, CELL_SIZE, CELL_SIZE));
     animation->setEndValue(QRect(endx, endy, CELL_SIZE, CELL_SIZE));
     animation->setDuration(duration);
     animation->start();
+    
     emit moveOneCellFinished();
 }
 // 按照path移动的整体动画，用QTimer延时调用moveOneCell函数

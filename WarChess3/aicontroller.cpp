@@ -1,11 +1,11 @@
-﻿#include "aicontroller.h"
+﻿#include "AIController.h"
 
 /*  AIController是AI的控制类，有一个GameAI成员变量
  *  主要控制方法为通过循环，使得AI运行是依次而非同时的
  */
 
-AIController::AIController(Character* t_character[], const  int t_characterNum, QWidget* parent) :
-    QTimer(parent), m_characterNum(t_characterNum), m_count(-1)
+AIController::AIController(Role* t_character[], const  int t_characterNum, QWidget* parent) :
+    QTimer(parent), totalRolesNum(t_characterNum), m_count(-1)
 {
     m_character = t_character;
     m_gameAI = new GameAI;
@@ -34,13 +34,13 @@ void AIController::loop()
         emit AIRoundFinished();
         return;
     }
-    for (; m_count < m_characterNum; m_count++)// 遍历所有角色
+    for (; m_count < totalRolesNum; m_count++)// 遍历所有角色
     {
         // 如果此角色属于AI方且没死，则用GameAI移动
-        if (m_character[m_count]->m_belong == RED && m_character[m_count]->m_characterState != Character::DEAD)
+        if (m_character[m_count]->belong == RED && m_character[m_count]->pieceState != Role::DEAD)
         {
             m_usedAI++;
-            m_gameAI->moveCharacter(m_count, m_character, m_characterNum);
+            m_gameAI->moveCharacter(m_count, m_character, totalRolesNum);
             return;
         }
     }

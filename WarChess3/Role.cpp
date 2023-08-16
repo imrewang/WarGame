@@ -6,111 +6,109 @@
  */
 
 Role::Role(const int cellX, const int cellY, const bool belong, QWidget* parent)
-    : Piece(cellX, cellY, belong, parent)
+	: Piece(cellX, cellY, belong, parent)
 {
-    // 关于移动、攻击动画的信号和槽
-    moveAnimation = new MoveAnimation();
-    attackAnimation = new AttrackAnimation();
-    connect(moveAnimation, &MoveAnimation::widgetDown, this, [=]() {this->cellY++; });
-    connect(moveAnimation, &MoveAnimation::widgetUp, this, [=]() {this->cellY--; });
-    connect(moveAnimation, &MoveAnimation::widgetRight, this, [=]() {this->cellX++; });
-    connect(moveAnimation, &MoveAnimation::widgetLeft, this, [=]() {this->cellX--; });
+	// 关于移动、攻击动画的信号和槽
+	moveAnimation = new MoveAnimation();
+	attackAnimation = new AttrackAnimation();
+	connect(moveAnimation, &MoveAnimation::widgetDown, this, [=]() {this->cellY++; });
+	connect(moveAnimation, &MoveAnimation::widgetUp, this, [=]() {this->cellY--; });
+	connect(moveAnimation, &MoveAnimation::widgetRight, this, [=]() {this->cellX++; });
+	connect(moveAnimation, &MoveAnimation::widgetLeft, this, [=]() {this->cellX--; });
 
-    connect(moveAnimation, &MoveAnimation::animationFinished, this, [=]() {emit &Role::infoChangedSignal; });
+	connect(moveAnimation, &MoveAnimation::animationFinished, this, [=]() {emit& Role::infoChangedSignal; });
 
-    // 操作选择框
-    selection = new RoleSelection(parent);
-    selection->hide();
+	// 操作选择框
+	selection = new RoleSelection(parent);
+	selection->hide();
 
-    // 当人物信息改变时，血条、人物属性和操作选择框的所有信息都要改变
-    connect(this, &Role::infoChangedSignal, [=]() {
-        // 按顺序，raise有次序
-        if (pieceState == DEAD)
-        {
-            propertyTag->close();
-            selection->close();
-            hide();
-        }
-        propertyTag->updatePropertyData(curHp, curMove, this->cellX, this->cellY);
-        selection->updateSelectionData(this->cellX, this->cellY);
-        
-        hpLabel->resetHp(curHp);
-        hpLabel->repaint();
-        });
+	// 当人物信息改变时，血条、人物属性和操作选择框的所有信息都要改变
+	connect(this, &Role::infoChangedSignal, [=]() {
+		// 按顺序，raise有次序
+		if (pieceState == DEAD)
+		{
+			propertyTag->close();
+			selection->close();
+			hide();
+		}
+		propertyTag->updatePropertyData(curHp, curMove, this->cellX, this->cellY);
+		selection->updateSelectionData(this->cellX, this->cellY);
 
-    // 操作选择框的各个操作按钮
-    connect(selection->moveButton, &QPushButton::clicked,this, &Role::roleMoveSlot);
-    connect(selection->attackButton, &QPushButton::clicked,this, &Role::roleAttackSlot);
-    connect(selection->skipButton, &QPushButton::clicked,this, &Role::roleSkipSlot);
+		hpLabel->resetHp(curHp);
+		hpLabel->repaint();
+		});
+
+	// 操作选择框的各个操作按钮
+	connect(selection->moveButton, &QPushButton::clicked, this, &Role::roleMoveSlot);
+	connect(selection->attackButton, &QPushButton::clicked, this, &Role::roleAttackSlot);
+	connect(selection->skipButton, &QPushButton::clicked, this, &Role::roleSkipSlot);
 }
 
 
 // 人物需要移动，连接到GameScene的寻路显示上
 void Role::beAttackedSlot(const int attackPoints)
 {
-    int decreasedHp;
-    if (attackPoints <= 20) {
-        decreasedHp = attackPoints;
-    }
-    else {
-        decreasedHp = attackPoints - armor;
-    }
-    // 扣血
-    curHp -= int(decreasedHp);
-    curHp = min(curHp, maxHp);
-    // 扣血
-    //m_hp -= int(m_armor / 100.0 * attrack);
+	int decreasedHp;
+	if (attackPoints <= 20) {
+		decreasedHp = attackPoints;
+	}
+	else {
+		decreasedHp = attackPoints - armor;
+	}
+	// 扣血
+	curHp -= int(decreasedHp);
+	curHp = min(curHp, maxHp);
+	// 扣血
+	//m_hp -= int(m_armor / 100.0 * attrack);
 
-    // 判断是否死亡
-    if (curHp <= 0)
-    {
-        pieceState = DEAD;
-        hide();
-        emit killRoleSignal(this);
-    }
-    bloodLossAnimation(decreasedHp);
+	// 判断是否死亡
+	if (curHp <= 0)
+	{
+		pieceState = DEAD;
+		hide();
+		emit killRoleSignal(this);
+	}
+	bloodLossAnimation(decreasedHp);
 }
 
 // 人物需要移动，连接到GameScene的寻路显示上
 void Role::roleMoveSlot()
 {
-    if (selection->isHidden() == false) {
-        selection->hide();
-    }
-    pieceState = FIND_PATH;
-    emit roleMoveSignal(this);
+	if (selection->isHidden() == false) {
+		selection->hide();
+	}
+	pieceState = FIND_PATH;
+	emit roleMoveSignal(this);
 }
 // 人物需要攻击，连接到GameScene的攻击显示上
 void Role::roleAttackSlot()
 {
-    if (curMove<=0)
-    {
-        emit displayHintLabelSignal("行动力为0");
-        emit hideCancelButtonSignal();
-        return;
-    }
-    if (selection->isHidden() == false) {
-        selection->hide();
-    }
-    pieceState = FIND_ENEMIES;
-    emit roleAttackSignal(this);
+	if (curMove <= 0)
+	{
+		emit displayHintLabelSignal("行动力为0");
+		emit hideCancelButtonSignal();
+		return;
+	}
+	selection->hide();
+	pieceState = FIND_ENEMIES;
+	emit roleAttackSignal(this);
 }
 
 
 // 跳过选择，向GameScene说明有人结束
 void Role::roleSkipSlot()
 {
-    pieceState = FINISH;
-    selection->hide();
-    emit roleSkipSignal(this);
+	pieceState = FINISH;
+	selection->hide();
+	emit roleSkipSignal(this);
 }
 
 // 给予路径，调动MoveAnimation播放移动的动画
 void Role::movePos(const int steps, const std::vector<int>& path)
 {
-    selection->hide();
-    curMove -= steps;
-    qDebug() << name << endl;
-    moveAnimation->moveAlongPath(this, path);
-    infoChangedSignal();
+	selection->hide();
+	curMove -= steps;
+	qDebug() << name << endl;
+	moveAnimation->moveAlongPath(this, path);
+	infoChangedSignal();
 }

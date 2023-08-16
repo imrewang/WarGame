@@ -83,9 +83,9 @@ void Role::roleMoveSlot()
 // 人物需要攻击，连接到GameScene的攻击显示上
 void Role::roleAttackSlot()
 {
-    if (curMove>0)
+    if (curMove<=0)
     {
-        emit displayHintLabelSignal("本回合已攻击过");
+        emit displayHintLabelSignal("行动力为0");
         emit hideCancelButtonSignal();
         return;
     }

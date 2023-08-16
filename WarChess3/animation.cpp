@@ -15,9 +15,7 @@ void MoveAnimation::moveOneCell(QWidget* object, const int direction, const int 
 {
     // 开始格子
     int beginx = object->x();
-    qDebug() << "beginx   "<< beginx << endl;
     int beginy = object->y();
-    qDebug() << "beginy   " << beginy << endl;
     // 结束格子
     int endx = beginx;
     int endy = beginy;

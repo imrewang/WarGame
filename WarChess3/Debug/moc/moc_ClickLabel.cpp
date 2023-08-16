@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ClickLabel_t {
     QByteArrayData data[3];
-    char stringdata0[20];
+    char stringdata0[26];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,11 +33,11 @@ struct qt_meta_stringdata_ClickLabel_t {
 static const qt_meta_stringdata_ClickLabel_t qt_meta_stringdata_ClickLabel = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "ClickLabel"
-QT_MOC_LITERAL(1, 11, 7), // "clicked"
-QT_MOC_LITERAL(2, 19, 0) // ""
+QT_MOC_LITERAL(1, 11, 13), // "clickedSignal"
+QT_MOC_LITERAL(2, 25, 0) // ""
 
     },
-    "ClickLabel\0clicked\0"
+    "ClickLabel\0clickedSignal\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -69,14 +69,14 @@ void ClickLabel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<ClickLabel *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->clicked(); break;
+        case 0: _t->clickedSignal(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (ClickLabel::*)() const;
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ClickLabel::clicked)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ClickLabel::clickedSignal)) {
                 *result = 0;
                 return;
             }
@@ -126,7 +126,7 @@ int ClickLabel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ClickLabel::clicked()const
+void ClickLabel::clickedSignal()const
 {
     QMetaObject::activate(const_cast< ClickLabel *>(this), &staticMetaObject, 0, nullptr);
 }

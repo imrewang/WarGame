@@ -19,5 +19,5 @@ public:
     explicit ClickLabel(const int w, const int h, const QPixmap map, QWidget* parent = nullptr, const int style = NOSTYLE, const QString str = "");
     void setPixmap(QPixmap t_pic); // 重置图片
 signals:
-    void clicked()const; // 点击信号
+    void clickedSignal()const; // 点击信号
 };

@@ -1,6 +1,6 @@
 ﻿#include "mainscene.h"
 #include "gamescene.h"
-#include "character.h"
+#include "Role.h"
 #include "config.h"
 #include <QApplication>
 #include <QMetaType>

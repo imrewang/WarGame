@@ -1,11 +1,19 @@
-﻿  moc aicontroller.h
+﻿  moc Base.h
+  Base.cpp
   GameScene.cpp
-  aicontroller.cpp
-  main.cpp
   mainscene.cpp
-D:\exercise_w\WarChess3\WarChess3\GameScene.cpp(404,27): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
-D:\exercise_w\WarChess3\WarChess3\GameScene.cpp(418,35): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
+  main.cpp
+D:\exercise_w\WarChess3\WarChess3\GameScene.cpp(404,25): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
+D:\exercise_w\WarChess3\WarChess3\GameScene.cpp(418,32): warning C4805: “==”: 在操作中将类型“bool”与类型“int”混合不安全
+  moc_HPLabel.cpp
+  moc_Piece.cpp
+  moc_RoleSelection.cpp
+  moc_PropertyTag.cpp
+  moc_ClickLabel.cpp
   moc_GameAI.cpp
+  moc_AIController.cpp
+  moc_Role.cpp
   moc_GameScene.cpp
-  moc_aicontroller.cpp
+  moc_playingmenu.cpp
+  moc_Base.cpp
   WarChess3.vcxproj -> D:\exercise_w\WarChess3\Debug\WarChess3.exe

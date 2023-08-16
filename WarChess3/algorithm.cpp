@@ -19,7 +19,7 @@ void FindPathAlgorithm::init()
 	m_foundPathOrNot = false;
 	m_path.clear();
 }
-void FindPathAlgorithm::init(int t_move, Character* t_nowCharacter)
+void FindPathAlgorithm::init(int t_move, Role* t_nowCharacter)
 {
 	init();
 	m_totalMove = t_move;
@@ -27,12 +27,12 @@ void FindPathAlgorithm::init(int t_move, Character* t_nowCharacter)
 	m_foundPathOrNot = false;
 }
 // bfs寻找可行域
-void FindPathAlgorithm::findAvailableCell(const int x, const  int y, const int depth, Character* character[], const  int characterNum)
+void FindPathAlgorithm::findAvailableCell(const int x, const  int y, const int depth, Role* character[], const  int characterNum)
 {
 	for (int i = 0; i < characterNum; i++) {
-		if (character[i] != m_nowCharacter && character[i]->m_characterState != Character::DEAD) {
-			if (character[i]->m_belong != m_nowCharacter->m_belong) { //遇见有人挡路绕不过去
-				m_resultMap[character[i]->m_cellx][character[i]->m_celly] = -9;
+		if (character[i] != m_nowCharacter && character[i]->pieceState != Role::DEAD) {
+			if (character[i]->pieceState != m_nowCharacter->belong) { //遇见有人挡路绕不过去
+				m_resultMap[character[i]->cellX][character[i]->cellY] = -9;
 			}
 		}
 	}

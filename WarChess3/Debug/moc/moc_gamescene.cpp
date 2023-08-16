@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameScene_t {
     QByteArrayData data[18];
-    char stringdata0[201];
+    char stringdata0[197];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,31 +33,31 @@ struct qt_meta_stringdata_GameScene_t {
 static const qt_meta_stringdata_GameScene_t qt_meta_stringdata_GameScene = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "GameScene"
-QT_MOC_LITERAL(1, 10, 6), // "myLoss"
-QT_MOC_LITERAL(2, 17, 0), // ""
-QT_MOC_LITERAL(3, 18, 5), // "myWin"
-QT_MOC_LITERAL(4, 24, 7), // "restart"
-QT_MOC_LITERAL(5, 32, 4), // "exit"
-QT_MOC_LITERAL(6, 37, 15), // "redrawCharacter"
-QT_MOC_LITERAL(7, 53, 10), // "redrawBase"
-QT_MOC_LITERAL(8, 64, 18), // "characterMoveEvent"
-QT_MOC_LITERAL(9, 83, 10), // "Character*"
-QT_MOC_LITERAL(10, 94, 21), // "characterAttrackEvent"
-QT_MOC_LITERAL(11, 116, 20), // "endOneCharacterEvent"
-QT_MOC_LITERAL(12, 137, 20), // "dieOneCharacterEvent"
-QT_MOC_LITERAL(13, 158, 15), // "dieOneBaseEvent"
-QT_MOC_LITERAL(14, 174, 5), // "Base*"
-QT_MOC_LITERAL(15, 180, 11), // "receiveHint"
-QT_MOC_LITERAL(16, 192, 3), // "str"
-QT_MOC_LITERAL(17, 196, 4) // "next"
+QT_MOC_LITERAL(1, 10, 12), // "myLossSignal"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 11), // "myWinSignal"
+QT_MOC_LITERAL(4, 36, 13), // "restartSignal"
+QT_MOC_LITERAL(5, 50, 10), // "exitSignal"
+QT_MOC_LITERAL(6, 61, 14), // "redrawRoleSlot"
+QT_MOC_LITERAL(7, 76, 14), // "redrawBaseSlot"
+QT_MOC_LITERAL(8, 91, 12), // "findPathSlot"
+QT_MOC_LITERAL(9, 104, 5), // "Role*"
+QT_MOC_LITERAL(10, 110, 15), // "findEnemiesSlot"
+QT_MOC_LITERAL(11, 126, 11), // "roleEndSlot"
+QT_MOC_LITERAL(12, 138, 12), // "roleDiesSlot"
+QT_MOC_LITERAL(13, 151, 17), // "baseDestroyedSlot"
+QT_MOC_LITERAL(14, 169, 5), // "Base*"
+QT_MOC_LITERAL(15, 175, 12), // "showHintSlot"
+QT_MOC_LITERAL(16, 188, 3), // "str"
+QT_MOC_LITERAL(17, 192, 4) // "next"
 
     },
-    "GameScene\0myLoss\0\0myWin\0restart\0exit\0"
-    "redrawCharacter\0redrawBase\0"
-    "characterMoveEvent\0Character*\0"
-    "characterAttrackEvent\0endOneCharacterEvent\0"
-    "dieOneCharacterEvent\0dieOneBaseEvent\0"
-    "Base*\0receiveHint\0str\0next"
+    "GameScene\0myLossSignal\0\0myWinSignal\0"
+    "restartSignal\0exitSignal\0redrawRoleSlot\0"
+    "redrawBaseSlot\0findPathSlot\0Role*\0"
+    "findEnemiesSlot\0roleEndSlot\0roleDiesSlot\0"
+    "baseDestroyedSlot\0Base*\0showHintSlot\0"
+    "str\0next"
 };
 #undef QT_MOC_LITERAL
 
@@ -117,19 +117,19 @@ void GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<GameScene *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->myLoss(); break;
-        case 1: _t->myWin(); break;
-        case 2: _t->restart(); break;
-        case 3: _t->exit(); break;
-        case 4: _t->redrawCharacter(); break;
-        case 5: _t->redrawBase(); break;
-        case 6: _t->characterMoveEvent((*reinterpret_cast< Character*(*)>(_a[1]))); break;
-        case 7: _t->characterAttrackEvent((*reinterpret_cast< Character*(*)>(_a[1]))); break;
-        case 8: _t->endOneCharacterEvent((*reinterpret_cast< Character*(*)>(_a[1]))); break;
-        case 9: _t->dieOneCharacterEvent((*reinterpret_cast< Character*(*)>(_a[1]))); break;
-        case 10: _t->dieOneBaseEvent((*reinterpret_cast< Base*(*)>(_a[1]))); break;
-        case 11: _t->receiveHint((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
-        case 12: _t->receiveHint((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->myLossSignal(); break;
+        case 1: _t->myWinSignal(); break;
+        case 2: _t->restartSignal(); break;
+        case 3: _t->exitSignal(); break;
+        case 4: _t->redrawRoleSlot(); break;
+        case 5: _t->redrawBaseSlot(); break;
+        case 6: _t->findPathSlot((*reinterpret_cast< Role*(*)>(_a[1]))); break;
+        case 7: _t->findEnemiesSlot((*reinterpret_cast< Role*(*)>(_a[1]))); break;
+        case 8: _t->roleEndSlot((*reinterpret_cast< Role*(*)>(_a[1]))); break;
+        case 9: _t->roleDiesSlot((*reinterpret_cast< Role*(*)>(_a[1]))); break;
+        case 10: _t->baseDestroyedSlot((*reinterpret_cast< Base*(*)>(_a[1]))); break;
+        case 11: _t->showHintSlot((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 12: _t->showHintSlot((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -139,35 +139,28 @@ void GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Character* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Role* >(); break;
             }
             break;
         case 7:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Character* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Role* >(); break;
             }
             break;
         case 8:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Character* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Role* >(); break;
             }
             break;
         case 9:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Character* >(); break;
-            }
-            break;
-        case 10:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Base* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Role* >(); break;
             }
             break;
         }
@@ -175,28 +168,28 @@ void GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (GameScene::*)() const;
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::myLoss)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::myLossSignal)) {
                 *result = 0;
                 return;
             }
         }
         {
             using _t = void (GameScene::*)() const;
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::myWin)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::myWinSignal)) {
                 *result = 1;
                 return;
             }
         }
         {
             using _t = void (GameScene::*)() const;
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::restart)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::restartSignal)) {
                 *result = 2;
                 return;
             }
         }
         {
             using _t = void (GameScene::*)() const;
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::exit)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::exitSignal)) {
                 *result = 3;
                 return;
             }
@@ -245,25 +238,25 @@ int GameScene::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void GameScene::myLoss()const
+void GameScene::myLossSignal()const
 {
     QMetaObject::activate(const_cast< GameScene *>(this), &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
-void GameScene::myWin()const
+void GameScene::myWinSignal()const
 {
     QMetaObject::activate(const_cast< GameScene *>(this), &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void GameScene::restart()const
+void GameScene::restartSignal()const
 {
     QMetaObject::activate(const_cast< GameScene *>(this), &staticMetaObject, 2, nullptr);
 }
 
 // SIGNAL 3
-void GameScene::exit()const
+void GameScene::exitSignal()const
 {
     QMetaObject::activate(const_cast< GameScene *>(this), &staticMetaObject, 3, nullptr);
 }

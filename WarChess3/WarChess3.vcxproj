@@ -84,22 +84,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseProperty.cpp" />
     <ClCompile Include="ClickLabel.cpp" />
     <ClCompile Include="HintLabel.cpp" />
+    <ClCompile Include="HPLabel.cpp" />
+    <ClCompile Include="Piece.cpp" />
     <ClCompile Include="playingmenu.cpp" />
+    <ClCompile Include="RoleProperty.cpp" />
+    <ClCompile Include="RoleSelection.cpp" />
+    <ClInclude Include="BaseProperty.h" />
+    <QtMoc Include="HPLabel.h" />
+    <QtMoc Include="Piece.h" />
+    <ClInclude Include="RoleProperty.h" />
+    <QtMoc Include="RoleSelection.h" />
+    <QtMoc Include="PropertyTag.h" />
     <QtRcc Include="mainscene.qrc" />
     <QtUic Include="mainscene.ui" />
     <QtMoc Include="ClickLabel.h" />
     <QtMoc Include="HintLabel.h" />
     <ClInclude Include="mainscene.h" />
     <ClCompile Include="GameAI.cpp" />
-    <ClCompile Include="aicontroller.cpp" />
+    <ClCompile Include="AIController.cpp" />
     <ClCompile Include="algorithm.cpp" />
     <ClCompile Include="animation.cpp" />
-    <ClCompile Include="base.cpp" />
-    <ClCompile Include="character.cpp" />
-    <ClCompile Include="characterlabel.cpp" />
-    <ClCompile Include="characterrole.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="PropertyTag.cpp" />
+    <ClCompile Include="Role.cpp" />
+    <ClCompile Include="VariousRoles.cpp" />
     <ClCompile Include="gamemap.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="guidescene.cpp" />
@@ -108,13 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="GameAI.h" />
-    <QtMoc Include="aicontroller.h" />
+    <QtMoc Include="AIController.h" />
     <ClInclude Include="algorithm.h" />
     <QtMoc Include="animation.h" />
-    <QtMoc Include="base.h" />
-    <QtMoc Include="character.h" />
-    <QtMoc Include="characterlabel.h" />
-    <ClInclude Include="characterrole.h" />
+    <QtMoc Include="Base.h" />
+    <QtMoc Include="Role.h" />
+    <ClInclude Include="VariousRoles.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="gamemap.h" />
     <QtMoc Include="GameScene.h" />

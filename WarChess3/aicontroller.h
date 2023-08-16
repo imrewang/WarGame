@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include "config.h"
-#include "character.h"
+#include "Role.h"
 #include "GameAI.h"
 
 
@@ -12,13 +12,13 @@ class AIController : public QTimer
 {
     Q_OBJECT
 protected:
-    Character** m_character; // 场上的角色的头指针
-    int m_characterNum; // 场上角色数
+    Role** m_character; // 场上的角色的头指针
+    int totalRolesNum; // 场上角色数
     int m_count; // 遍历0~characterNum-1的循环变量
     int m_aicount, m_usedAI; // AI方有多少角色及已使用角色数
     GameAI* m_gameAI; // GameAI对象
 public:
-    AIController(Character* t_character[], const int t_characterNum, QWidget* parent = nullptr);
+    AIController(Role* t_character[], const int t_characterNum, QWidget* parent = nullptr);
     // 开始AI回合前，需要调用以初始化参数
     void reset(int aicount);
     // 进入AI循环

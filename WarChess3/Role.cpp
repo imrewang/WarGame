@@ -11,19 +11,19 @@ Role::Role(const int cellX, const int cellY, const bool belong, QWidget* parent)
 	// 关于移动、攻击动画的信号和槽
 	moveAnimation = new MoveAnimation();
 	attackAnimation = new AttrackAnimation();
-	connect(moveAnimation, &MoveAnimation::widgetDown, this, [=]() {this->cellY++; });
-	connect(moveAnimation, &MoveAnimation::widgetUp, this, [=]() {this->cellY--; });
-	connect(moveAnimation, &MoveAnimation::widgetRight, this, [=]() {this->cellX++; });
-	connect(moveAnimation, &MoveAnimation::widgetLeft, this, [=]() {this->cellX--; });
+	connect(moveAnimation, &MoveAnimation::widgetDown, this, [=]() {this->cellY++; }, Qt::UniqueConnection);
+	connect(moveAnimation, &MoveAnimation::widgetUp, this, [=]() {this->cellY--; }, Qt::UniqueConnection);
+	connect(moveAnimation, &MoveAnimation::widgetRight, this, [=]() {this->cellX++; }, Qt::UniqueConnection);
+	connect(moveAnimation, &MoveAnimation::widgetLeft, this, [=]() {this->cellX--; }, Qt::UniqueConnection);
 
-	connect(moveAnimation, &MoveAnimation::animationFinished, this, [=]() {emit& Role::infoChangedSignal; });
+	connect(moveAnimation, &MoveAnimation::animationFinished, this, [=]() {emit infoChangedSignal(); }, Qt::UniqueConnection);
 
 	// 操作选择框
 	selection = new RoleSelection(parent);
 	selection->hide();
 
 	// 当人物信息改变时，血条、人物属性和操作选择框的所有信息都要改变
-	connect(this, &Role::infoChangedSignal, [=]() {
+	connect(this, &Role::infoChangedSignal, this,[=]() {
 		// 按顺序，raise有次序
 		if (pieceState == DEAD)
 		{
@@ -36,12 +36,12 @@ Role::Role(const int cellX, const int cellY, const bool belong, QWidget* parent)
 
 		hpLabel->resetHp(curHp);
 		hpLabel->repaint();
-		});
+		}, Qt::UniqueConnection);
 
 	// 操作选择框的各个操作按钮
-	connect(selection->moveButton, &QPushButton::clicked, this, &Role::roleMoveSlot);
-	connect(selection->attackButton, &QPushButton::clicked, this, &Role::roleAttackSlot);
-	connect(selection->skipButton, &QPushButton::clicked, this, &Role::roleSkipSlot);
+	connect(selection->moveButton, &QPushButton::clicked, this, &Role::roleMoveSlot, Qt::UniqueConnection);
+	connect(selection->attackButton, &QPushButton::clicked, this, &Role::roleAttackSlot, Qt::UniqueConnection);
+	connect(selection->skipButton, &QPushButton::clicked, this, &Role::roleSkipSlot, Qt::UniqueConnection);
 }
 
 
@@ -67,6 +67,7 @@ void Role::beAttackedSlot(const int attackPoints)
 		pieceState = DEAD;
 		hide();
 		emit killRoleSignal(this);
+		qDebug() << "emit killRoleSignal(this);" << endl;
 	}
 	bloodLossAnimation(decreasedHp);
 }
@@ -108,7 +109,6 @@ void Role::movePos(const int steps, const std::vector<int>& path)
 {
 	selection->hide();
 	curMove -= steps;
-	qDebug() << name<<"movePos" << endl;
 	moveAnimation->moveAlongPath(this, path);
-	infoChangedSignal();
+	//infoChangedSignal();
 }

@@ -22,7 +22,7 @@ private:
 
 public:
     enum GAMESTATE { START, NAVIGATE, SEARCH_ENEMIES, AI, END };
-    explicit GameScene(const int gameMode = GAMEMODE::SINGLE_PLAYER, QWidget* parent = nullptr);
+    explicit GameScene(const int gameMode, QWidget* parent = nullptr);
     ~GameScene();
 protected:
     FindPathAlgorithm moveAl, attrackAl; // 移动可行域和攻击可行域的算法类

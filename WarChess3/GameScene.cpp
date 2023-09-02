@@ -60,46 +60,46 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 
 		rolesArray[i]->installEventFilter(this);
 		// 重绘屏幕
-		connect(rolesArray[i], &Role::repaintScreenSignal, this, [=]() { repaint(); });
+		connect(rolesArray[i], &Role::repaintScreenSignal, this, [=]() { repaint(); }, Qt::UniqueConnection);
 		// 触发人物移动事件
-		connect(rolesArray[i], &Role::roleMoveSignal, this, &GameScene::findPathSlot);
+		connect(rolesArray[i], &Role::roleMoveSignal, this, &GameScene::findPathSlot, Qt::UniqueConnection);
 		// 触发人物攻击事件
-		connect(rolesArray[i], &Role::roleAttackSignal, this, &GameScene::findEnemiesSlot);
+		connect(rolesArray[i], &Role::roleAttackSignal, this, &GameScene::findEnemiesSlot, Qt::UniqueConnection);
 		// 触发跳过一个人事件
-		connect(rolesArray[i], &Role::roleSkipSignal, this, &GameScene::roleEndSlot);
+		connect(rolesArray[i], &Role::roleSkipSignal, this, &GameScene::roleEndSlot, Qt::UniqueConnection);
 		// 触发死去一个人事件
-		connect(rolesArray[i], &Role::killRoleSignal, this, &GameScene::roleDiesSlot);
+		connect(rolesArray[i], &Role::killRoleSignal, this, &GameScene::roleDiesSlot, Qt::UniqueConnection);
 		// 触发显示提示框事件
 		void (GameScene:: * studentSlot)(QString) = &GameScene::showHintSlot;
-		connect(rolesArray[i], &Role::displayHintLabelSignal, this, studentSlot);
+		connect(rolesArray[i], &Role::displayHintLabelSignal, this, studentSlot, Qt::UniqueConnection);
 		// 触发隐藏取消键事件
-		connect(rolesArray[i], &Role::hideCancelButtonSignal, this, [=]() {emit cancelButton->clickedSignal(); });
+		connect(rolesArray[i], &Role::hideCancelButtonSignal, this, [=]() {emit cancelButton->clickedSignal(); }, Qt::UniqueConnection);
 
 	}
 
 	//  与基地有关的信号与槽
 	RedBase->installEventFilter(this);
-	connect(RedBase, &Base::repaintScreenSignal, this, [=]() {repaint(); });
-	connect(RedBase, &Base::killBaseSignal, this, &GameScene::baseDestroyedSlot);
+	connect(RedBase, &Base::repaintScreenSignal, this, [=]() {repaint(); }, Qt::UniqueConnection);
+	connect(RedBase, &Base::killBaseSignal, this, &GameScene::baseDestroyedSlot, Qt::UniqueConnection);
 
 	BlueBase->installEventFilter(this);
 	connect(BlueBase, &Base::repaintScreenSignal, this, [=]() {repaint(); });
-	connect(BlueBase, &Base::killBaseSignal, this, &GameScene::baseDestroyedSlot);
+	connect(BlueBase, &Base::killBaseSignal, this, &GameScene::baseDestroyedSlot, Qt::UniqueConnection);
 
 
 	// 与AI有关的初始化
 	isAIOpen = gameMode;
 	aiController = new AIController(rolesArray, totalRolesNum, this);
-	connect(aiController, &AIController::AIRoundBegin, this, [=]() {skipButton->hide(); });
-	connect(aiController, &AIController::AIRoundFinished, this, [=]() {skipButton->show(); nextRound(RED); });
+	connect(aiController, &AIController::AIRoundBegin, this, [=]() {skipButton->hide(); }, Qt::UniqueConnection);
+	connect(aiController, &AIController::AIRoundFinished, this, [=]() {skipButton->show(); nextRound(RED); }, Qt::UniqueConnection);
 
 	// 与显示游戏结果有关的初始化
 	resultMenu = new ResultMenu(this);
 	resultMenu->hide();
 
-	connect(resultMenu, &ResultMenu::exitGame, this, [=]() {backgroundMusic->stop(); emit &GameScene::exitSignal; });
-	connect(resultMenu, &ResultMenu::restartGame, this, [=]() {backgroundMusic->stop(); emit &GameScene::restartSignal; });
-	connect(this, &GameScene::myWinSignal, [=]() {
+	connect(resultMenu, &ResultMenu::exitGame, this, [=]() {backgroundMusic->stop(); emit exitSignal(); }, Qt::UniqueConnection);
+	connect(resultMenu, &ResultMenu::restartGame, this, [=]() {backgroundMusic->stop(); emit restartSignal(); }, Qt::UniqueConnection);
+	connect(this, &GameScene::myWinSignal,this, [=]() {
 		hintLabel->close();
 		skipButton->close();
 		menuButton->close();
@@ -108,20 +108,18 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 		resultMenu->show();
 		resultMenu->raise();
 		//这里要加一个让当前回合角色不被选中的东西
-		});
-	connect(this, &GameScene::myLossSignal, [=]() {
+		}, Qt::UniqueConnection);
+	connect(this, &GameScene::myLossSignal, this,[=]() {
 		hintLabel->close();
 		skipButton->close();
 		menuButton->close();
 		musicButton->close();
 
 		resultMenu->setResult(0, isAIOpen);
-		//QTimer::singleShot(500, this, [=]() {
 
 		resultMenu->show();
 		resultMenu->raise();
-		//});
-		});
+		}, Qt::UniqueConnection);
 
 
 
@@ -129,8 +127,8 @@ GameScene::GameScene(const int gameMode, QWidget* parent)
 	// 与游戏时菜单按钮有关的初始化
 	playingMenu = new PlayingMenu(this);
 	playingMenu->hide();
-	connect(playingMenu, &PlayingMenu::exitGame, this, [=]() {backgroundMusic->stop(); emit &GameScene::exitSignal; });
-	connect(playingMenu, &PlayingMenu::restartGame, this, [=]() {backgroundMusic->stop(); emit &GameScene::restartSignal; });
+	connect(playingMenu, &PlayingMenu::exitGame, this, [=]() {backgroundMusic->stop(); emit exitSignal(); }, Qt::UniqueConnection);
+	connect(playingMenu, &PlayingMenu::restartGame, this, [=]() {backgroundMusic->stop(); emit  restartSignal(); }, Qt::UniqueConnection);
 
 
 	// 初始时重绘人物
@@ -274,7 +272,7 @@ void GameScene::setButtons()
 
 			});
 
-		});
+		}, Qt::UniqueConnection);
 
 	// 如果触发跳过按钮，则开启下一轮
 	connect(skipButton, &ClickLabel::clickedSignal, this, [=]() {
@@ -289,7 +287,7 @@ void GameScene::setButtons()
 			nextRound(roundBelong);
 			});
 
-		});
+		}, Qt::UniqueConnection);
 
 
 	// 如果触发音乐按钮，则判断当前音乐状态并切换图片和音乐状态
@@ -312,7 +310,7 @@ void GameScene::setButtons()
 				backgroundMusic->stop();
 			}
 			});
-		});
+		}, Qt::UniqueConnection);
 	// 如果触发菜单按键，则展开菜单
 	connect(menuButton, &ClickLabel::clickedSignal, this, [=]() {
 		zoom(menuButton);
@@ -322,7 +320,7 @@ void GameScene::setButtons()
 			playingMenu->show();
 			playingMenu->raise();
 			});
-		});
+		}, Qt::UniqueConnection);
 }
 void GameScene::redrawRoleSlot()const
 {
@@ -601,6 +599,7 @@ void GameScene::roleEndSlot(Role* endedCharacter)
 // 死人后触发
 void GameScene::roleDiesSlot(Role* deadCharacter)
 {
+
 	int id = -1;
 	// 找到死人id
 	for (int i = 0; i < totalRolesNum; i++)
@@ -611,6 +610,7 @@ void GameScene::roleDiesSlot(Role* deadCharacter)
 			break;
 		}
 	}
+	qDebug() << "id " << id << endl;
 	/*int alive = 0;
 	for (int i = 0; i < totalRolesNum; i++) {
 		if (m_character[i]->m_belong == deadCharacter->m_belong && id != i && m_character[i]->m_characterState != Character::DEAD) {
@@ -620,17 +620,18 @@ void GameScene::roleDiesSlot(Role* deadCharacter)
 
 	aliveNum[m_character[id]->m_belong] = alive;*/
 	aliveNum[rolesArray[id]->belong]--;
-
+	qDebug() << "aliveNum[rolesArray[id]->belong] " << aliveNum[rolesArray[id]->belong] << endl;
+	qDebug() << "rolesArray[id]->belong  " << rolesArray[id]->name << endl;
 	// 如果人死完了则判定游戏结果
 	if (aliveNum[rolesArray[id]->belong] == 0)
 	{
 		hintLabel->hide();
 		gameState = END;
 		if (rolesArray[id]->belong == BLUE) {
-			emit& GameScene::myLossSignal;
+			emit myLossSignal();
 		}
 		else {
-			emit& GameScene::myWinSignal;
+			emit myWinSignal();
 		}
 		return;
 	}
@@ -640,10 +641,10 @@ void GameScene::roleDiesSlot(Role* deadCharacter)
 void GameScene::baseDestroyedSlot(Base* deadBase) {
 	gameState = END;
 	if (deadBase->belong == BLUE) {
-		emit &GameScene::myLossSignal;
+		emit myLossSignal();
 	}
 	else {
-		emit &GameScene::myWinSignal;
+		emit myWinSignal();
 	}
 	return;
 }
@@ -855,15 +856,12 @@ void GameScene::mousePressEvent(QMouseEvent* event)
 			if (currentRole->curMove <= 0) {
 				connect(currentRole->moveAnimation, &MoveAnimation::animationFinished, this, [=]() {
 					gameState = START;
-					//m_nowCharacter->m_characterState = BGEIN;
 					if (currentRole->curMove <= 0) {
-						//m_nowCharacter->m_move = 0;
-
 						currentRole->pieceState = Role::FINISH;
 						currentRole->selection->hide();
 						emit currentRole->roleSkipSignal(currentRole);
 					}
-					});
+					}, Qt::UniqueConnection);
 			}
 
 			repaint();
@@ -907,7 +905,7 @@ void GameScene::mousePressEvent(QMouseEvent* event)
 				currentRole->attackAnimation->startMove(currentRole, currentRole->cellX, currentRole->cellY,
 					EnemyBase->cellX, EnemyBase->cellY);
 				// 等待攻击完毕，发动结算机制
-				connect(currentRole->attackAnimation, &AttrackAnimation::animationFinished, this, [=]() {
+				connect(currentRole->attackAnimation, &AttrackAnimation::attackAnimationFinished, this, [=]() {
 					emit EnemyBase->beAttackedSignal(currentRole->attackPoints);
 					disconnect(currentRole->attackAnimation, 0, this, 0); //仅结算一次，因此要断连
 					gameState = START;
@@ -918,7 +916,7 @@ void GameScene::mousePressEvent(QMouseEvent* event)
 						currentRole->selection->hide();
 						emit currentRole->roleSkipSignal(currentRole);
 					}
-					});
+					}, Qt::UniqueConnection);
 			}
 
 
@@ -943,7 +941,7 @@ void GameScene::mousePressEvent(QMouseEvent* event)
 					currentRole->attackAnimation->startMove(currentRole, currentRole->cellX, currentRole->cellY,
 						rolesArray[i]->cellX, rolesArray[i]->cellY);
 					// 等待攻击完毕，发动结算机制
-					connect(currentRole->attackAnimation, &AttrackAnimation::animationFinished, this, [=]() {
+					connect(currentRole->attackAnimation, &AttrackAnimation::attackAnimationFinished, this, [=]() {
 						emit rolesArray[i]->beAttackedSignal(currentRole->attackPoints);
 						disconnect(currentRole->attackAnimation, 0, this, 0); //仅结算一次，因此要断连
 						
@@ -955,7 +953,7 @@ void GameScene::mousePressEvent(QMouseEvent* event)
 							currentRole->selection->hide();
 							emit currentRole->roleSkipSignal(currentRole);
 						}
-						});
+						}, Qt::UniqueConnection);
 					break;
 				}
 			}

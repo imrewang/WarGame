@@ -9,6 +9,12 @@ AIController::AIController(Role* t_character[], const  int t_characterNum, QWidg
 {
     m_character = t_character;
     m_gameAI = new GameAI;
+
+    connect(m_gameAI, &GameAI::thisCharacterFinished, this, &AIController::loop, Qt::UniqueConnection);
+    connect(m_gameAI, &GameAI::oneAttackOverSignal, this, [=]() {
+        qDebug() << "%%%%^同一个角色接着动%%%%%" << endl;
+        m_gameAI->moveCharacter(m_count, m_character, totalRolesNum);
+        }, Qt::UniqueConnection);
 }
 // 开始AI回合前，需要调用以初始化参数
 void AIController::reset(int t_aicount)
@@ -21,12 +27,15 @@ void AIController::reset(int t_aicount)
 void AIController::start()
 {
     emit AIRoundBegin();
-    connect(m_gameAI, &GameAI::thisCharacterFinished, this, &AIController::loop, Qt::UniqueConnection);
+    
+
+    qDebug() << "*************start*****************" << endl;
     loop();
 }
 // 等待到GameAI操纵角色行动完成后，使下一个角色行动
 void AIController::loop()
 {
+    qDebug() << "^^^^^^^^^^^^^^^^^^有thisCharacterFinished^^^^^^^^^^^^^^^^^^" << endl;
     m_count++;
     if (m_aicount == m_usedAI)
     {

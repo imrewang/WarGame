@@ -11,7 +11,9 @@ protected:
     FindPathAlgorithm m_Al;
     int m_attrackid, m_minDist; // 要攻击的对象和没移动前距离对方棋子所有距离的最小值
     Role* m_nowCharacter; // 当前要移动的角色
+    int id;
     Role** m_character; // 场上的角色的头指针
+    int characterNum;
 public:
     GameAI();
     void AIRound(Role* character[], int characterNum);
@@ -26,4 +28,5 @@ protected:
     //int 
 signals:
     void thisCharacterFinished() const; // AI移动一个棋子结束
+    void oneAttackOverSignal()const;
 };

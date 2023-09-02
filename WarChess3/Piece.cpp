@@ -11,7 +11,7 @@ Piece::Piece(const int cellX, const int cellY, const bool belong, QWidget* paren
 
     layout = new QVBoxLayout(this);
 
-    connect(this, &Piece::beAttackedSignal, this, &Piece::beAttackedSlot);
+    connect(this, &Piece::beAttackedSignal, this, &Piece::beAttackedSlot,Qt::UniqueConnection);
 }
 // 鼠标进入，弹出棋子属性栏
 void Piece::enterEvent(QEvent*)

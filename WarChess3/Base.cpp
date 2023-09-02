@@ -18,9 +18,9 @@ Base::Base(const int cellX, const int cellY, const bool belong, QWidget* parent)
 	propertyTag->hide();
 
 	// 当人物信息改变时，血条、人物属性和操作选择框的所有信息都要改变
-	connect(this, &Base::infoChangedSignal, [=]() {
+	connect(this, &Base::infoChangedSignal, this,[=]() {
 		// 按顺序，raise有次序
-		if (pieceState == DEAD)
+		if (pieceState == Base::DEAD)
 		{
 			propertyTag->close();
 			hide();
@@ -28,7 +28,7 @@ Base::Base(const int cellX, const int cellY, const bool belong, QWidget* parent)
 		propertyTag->updatePropertyData(curHp);
 		hpLabel->resetHp(curHp);
 		hpLabel->repaint();
-		});
+		}, Qt::UniqueConnection);
 
 }
 
@@ -44,8 +44,6 @@ void Base::beAttackedSlot(const int attackPoints)
 	// 扣血
 	curHp -= int(decreasedHp);
 	curHp = min(curHp, maxHp);
-	// 扣血
-	//m_hp -= int(m_armor / 100.0 * attrack);
 
 	// 判断是否死亡
 	if (curHp <= 0)

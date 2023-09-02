@@ -131,4 +131,4 @@ inline int ManhattanDist(int x1, int y1, int x2, int y2)
 // 一些枚举变量
 enum BELONGING { RED, BLUE };
 enum DERECTION { UP, DOWN, LEFT, RIGHT };
-enum GAMEMODE { SINGLE_PLAYER = 1, TWO_PLAYER = 0 };
+

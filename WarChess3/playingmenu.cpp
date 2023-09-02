@@ -32,11 +32,11 @@ PlayingMenu::PlayingMenu(QWidget* parent) : QWidget(parent)
     }
 
     // 按下第一个按钮：继续游戏
-    connect(m_button[0], &ClickLabel::clickedSignal, this, &PlayingMenu::hide);
+    connect(m_button[0], &ClickLabel::clickedSignal, this, &PlayingMenu::hide, Qt::UniqueConnection);
     // 按下第二个按钮：发送重新开始游戏信号
-    connect(m_button[1], &ClickLabel::clickedSignal, this, [=]() {emit restartGame(); });
+    connect(m_button[1], &ClickLabel::clickedSignal, this, [=]() {emit restartGame(); }, Qt::UniqueConnection);
     // 按下第三个按钮：发送退出游戏信号
-    connect(m_button[2], &ClickLabel::clickedSignal, this, [=]() {emit exitGame(); });
+    connect(m_button[2], &ClickLabel::clickedSignal, this, [=]() {emit exitGame(); }, Qt::UniqueConnection);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -58,9 +58,9 @@ ResultMenu::ResultMenu(QWidget* parent) :
         m_button[i]->raise();
     }
     // 按下第一个按钮：重新开始游戏
-    connect(m_button[0], &ClickLabel::clickedSignal, this, [=]() {emit restartGame(); });
+    connect(m_button[0], &ClickLabel::clickedSignal, this, [=]() {emit restartGame(); }, Qt::UniqueConnection);
     // 按下第二个按钮：退出游戏
-    connect(m_button[1], &ClickLabel::clickedSignal, this, [=]() {emit exitGame(); });
+    connect(m_button[1], &ClickLabel::clickedSignal, this, [=]() {emit exitGame(); }, Qt::UniqueConnection);
 
 }
 // 显示结果
